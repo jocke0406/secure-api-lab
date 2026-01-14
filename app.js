@@ -10,3 +10,10 @@ app.get("/health", (req, res) => {
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`API running on :${port}`));
+app.get("/eval", (req, res) => {
+  // ⚠️ NE PAS GARDER : uniquement pour test CodeQL
+  const x = req.query.x || "2+2";
+  // eslint-disable-next-line no-eval
+  const y = eval(x);
+  res.json({ y });
+});
